@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import {Component, OnInit} from '@angular/core';
 
 @Component({
@@ -15,15 +14,4 @@ export class AppComponent implements OnInit {
 
   }
 
-=======
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
-})
-export class AppComponent {
-  title = 'cargo-front';
->>>>>>> 99d5555 (initial commit)
 }

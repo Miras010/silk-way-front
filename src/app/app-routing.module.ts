@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-<<<<<<< HEAD
 import {AppComponent} from "./app.component";
 import {LoginComponent} from "./login/login.component";
 import {RegistrationComponent} from "./registration/registration.component";
@@ -33,11 +32,6 @@ const routes: Routes = [
     component: ResetPasswordComponent
   },
   {
-    path: 'main',
-    loadChildren: () => import('./main/main.module')
-      .then(m => m.MainModule)
-  },
-  {
     path: 'partner',
     loadChildren: () => import('./partner/partner.module')
       .then(m => m.PartnerModule),
@@ -64,10 +58,6 @@ const routes: Routes = [
     redirectTo: 'user'
   },
 ];
-=======
-
-const routes: Routes = [];
->>>>>>> 99d5555 (initial commit)
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-<<<<<<< HEAD
 import {ButtonModule} from "primeng/button";
 import {HttpClientModule} from "@angular/common/http";
 import {SidebarModule} from "primeng/sidebar";
@@ -69,18 +68,5 @@ import {ForgotPasswordComponent} from "./forgot-password/forgot-password.compone
   entryComponents: [
     DialogComponent
   ],
-=======
-
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
->>>>>>> 99d5555 (initial commit)
 })
 export class AppModule { }
