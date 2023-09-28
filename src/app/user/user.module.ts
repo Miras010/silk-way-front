@@ -26,28 +26,31 @@ import {InputMaskModule} from "primeng/inputmask";
 import {NewUserHeaderComponent} from "../ui-components/new-user-header/new-user-header.component";
 import {TabViewModule} from "primeng/tabview";
 import {MyButtonComponent} from "../ui-components/my-button/my-button.component";
+import {DividerModule} from "primeng/divider";
+import {CalculatorComponent} from "./calculator/calculator.component";
 
 @NgModule({
-  imports: [
-    UserRoutingModule,
-    CardModule,
-    FormsModule,
-    ProgressSpinnerModule,
-    NgIf,
-    AccordionModule,
-    NgForOf,
-    ButtonModule,
-    ToastModule,
-    ReactiveFormsModule,
-    InputTextModule,
-    InputTextareaModule,
-    ConfirmDialogModule,
-    DialogModule,
-    RippleModule,
-    NgStyle,
-    InputMaskModule,
-    TabViewModule
-  ],
+    imports: [
+        UserRoutingModule,
+        CardModule,
+        FormsModule,
+        ProgressSpinnerModule,
+        NgIf,
+        AccordionModule,
+        NgForOf,
+        ButtonModule,
+        ToastModule,
+        ReactiveFormsModule,
+        InputTextModule,
+        InputTextareaModule,
+        ConfirmDialogModule,
+        DialogModule,
+        RippleModule,
+        NgStyle,
+        InputMaskModule,
+        TabViewModule,
+        DividerModule
+    ],
     exports: [
         NewUserHeaderComponent,
         UserHeaderComponent
@@ -62,7 +65,8 @@ import {MyButtonComponent} from "../ui-components/my-button/my-button.component"
     CardComponent,
     ReceiptsComponent,
     ProfileComponent,
-    MyButtonComponent
+    MyButtonComponent,
+    CalculatorComponent
   ],
   providers: [ConfirmationService],
 })

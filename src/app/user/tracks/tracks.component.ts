@@ -83,15 +83,15 @@ export class TracksComponent implements OnInit {
 
   getBackground (item: any) {
     if (item.track.receivedByClient) {
-      return {'background': '#f280ff'}
+      return {'background': '#ffd4b0'}
     } else if (item.track.receivedInAlmatyDate) {
-      return {'background': '#82ff9e'}
+      return {'background': '#b9ffc7'}
     } else if (item.track.fromChinaToAlmaty) {
-      return {'background': '#7ea8ff'}
+      return {'background': '#b7cfff'}
     } else if (item.track.receivedInChinaDate) {
-      return {'background': '#fffc80'}
+      return {'background': '#fffebf'}
     }
-    return {'background': '#c2c2c2'}
+    return {'background': '#efefef'}
   }
 
   getTypeText(item: any) {
@@ -114,7 +114,7 @@ export class TracksComponent implements OnInit {
   cardClick(item: any) {
     this.ref = this.dialogService.open(CardComponent, {
       header: 'Детальная информация',
-      width: '90%',
+      width: '80%',
       contentStyle: {"max-height": "500px", "overflow": "auto"},
       baseZIndex: 10000,
       data: {item}

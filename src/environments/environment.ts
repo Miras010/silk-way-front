@@ -5,7 +5,7 @@ export const environment = {
   // logoUrl: 'ZHAPPAR.png',
 
   // LOCALHOST
-  apiUrl: 'http://localhost:5000/api',
+  apiUrl: 'http://localhost:3001/api',
   cargoType: 'logo',
   logoUrl: 'logo.png',
 

@@ -70,9 +70,11 @@
 }
 
 .main {
-  height: 650px;
-  width: 100vw;
+  height: 100%;
+  min-height: 650px;
+  //width: 100vw;
   //background-image: url("../../../assets/main-bg.png");
+  //background-color: #b7892e;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -83,7 +85,7 @@
 
 .form-card {
   height: 100%;
-  width: 50vw;
+  //width: 50vw;
 }
 
 
@@ -94,6 +96,15 @@
 
 .title {
   font-size: 50px;
+  text-align: center;
+  color: orange;
+}
+
+.subtitle {
+  font-size: 30px;
+  text-align: start;
+  color: black;
+  //margin: 50px 0;
 }
 
 .p-inputtext {
@@ -101,28 +112,21 @@
   height: 50px;
 }
 
-.p-button {
-  background: orange;
-  border: orange;
-}
-
-.p-button:hover {
-  background: orange;
-  border: orange;
-}
-
 .video-sec {
-  padding: 150px 0;
-}
-
-.video-sec h2 {
-  font-size: 25px;
-  text-align: center;
-  margin-bottom: 30px;
-  //color: orange;
+  padding: 50px 0;
 }
 
 .video {
-  height: 500px;
+  height: 350px;
   width: 100%;
+  border-radius: 25px;
+}
+.conditions {
+  padding: 30px 0;
+}
+
+@media (max-width: 992px) {
+  .conditions {
+    padding-bottom: 150px;
+  }
 }

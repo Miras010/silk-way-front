@@ -7,6 +7,7 @@ import {HomeComponent} from "./home/home.component";
 import {ReceiptsComponent} from "./receipts/receipts.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {UserGuard} from "../guards/user.guard";
+import {CalculatorComponent} from "./calculator/calculator.component";
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
     {
       path: 'receipts',
       component: ReceiptsComponent
+    },
+    {
+      path: 'calculator',
+      component: CalculatorComponent
     },
     {
       path: 'profile',
