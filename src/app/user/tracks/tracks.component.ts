@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import {Component, OnInit, ViewEncapsulation} from '@angular/core'
 import {ConfirmationService, MessageService} from 'primeng/api'
 import {TrackService} from "../../services/track.service"
 import {UsersTrack } from '../../models/response/track-models'
@@ -13,6 +13,7 @@ import {CardComponent} from "../cardInfo/card.component";
   selector: 'app-tracks',
   templateUrl: './tracks.component.html',
   styleUrls: ['./tracks.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   providers: [MessageService, DialogService]
 })
 export class TracksComponent implements OnInit {
