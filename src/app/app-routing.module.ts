@@ -32,12 +32,6 @@ const routes: Routes = [
     component: ResetPasswordComponent
   },
   {
-    path: 'partner',
-    loadChildren: () => import('./partner/partner.module')
-      .then(m => m.PartnerModule),
-    canActivate: [PartnerGuard]
-  },
-  {
     path: 'user',
     loadChildren: () => import('./user/user.module')
       .then(m => m.UserModule)

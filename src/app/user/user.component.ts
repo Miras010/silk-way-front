@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
       <app-user-header></app-user-header>
       <hr>
       <router-outlet></router-outlet>
+      <app-user-footer></app-user-footer>
       <app-new-user-header></app-new-user-header>
     `,
 })

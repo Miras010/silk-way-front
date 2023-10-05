@@ -23,14 +23,17 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/user/home">Главная</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/user/calculator">Калькулятор</a>
-        </li>
         <li *ngIf="isAuthorized()" class="nav-item">
           <a class="nav-link" routerLink="/user/track">Трек-номера</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/user/address">Адрес склада</a>
+        </li>
         <li *ngIf="isAuthorized()" class="nav-item">
           <a class="nav-link" routerLink="/user/profile">Личный кабинет</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/user/calculator">Калькулятор</a>
         </li>
       </ul>
       <div>

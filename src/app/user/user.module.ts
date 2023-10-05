@@ -28,6 +28,9 @@ import {TabViewModule} from "primeng/tabview";
 import {MyButtonComponent} from "../ui-components/my-button/my-button.component";
 import {DividerModule} from "primeng/divider";
 import {CalculatorComponent} from "./calculator/calculator.component";
+import {UserFooterComponent} from "../ui-components/user-footer/user-footer.component";
+import {CheckboxModule} from "primeng/checkbox";
+import {AddressComponent} from "./address/address.component";
 
 @NgModule({
     imports: [
@@ -49,7 +52,8 @@ import {CalculatorComponent} from "./calculator/calculator.component";
         NgStyle,
         InputMaskModule,
         TabViewModule,
-        DividerModule
+        DividerModule,
+        CheckboxModule
     ],
     exports: [
         NewUserHeaderComponent,
@@ -66,7 +70,9 @@ import {CalculatorComponent} from "./calculator/calculator.component";
     ReceiptsComponent,
     ProfileComponent,
     MyButtonComponent,
-    CalculatorComponent
+    CalculatorComponent,
+    UserFooterComponent,
+    AddressComponent
   ],
   providers: [ConfirmationService],
 })

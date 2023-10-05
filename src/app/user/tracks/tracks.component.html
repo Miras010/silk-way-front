@@ -45,32 +45,42 @@
               </div>
               <div class="cardSec mt-1">
                 <div class="iconSec">
-                  <i *ngIf="item.track.fromChinaToAlmaty" class="pi pi-check-circle" style="font-size: 25px"></i>
-                  <i *ngIf="!item.track.fromChinaToAlmaty" class="pi pi-circle" style="font-size: 25px"></i>
+                  <i *ngIf="item.track.fromChinaToAktobe" class="pi pi-check-circle" style="font-size: 25px"></i>
+                  <i *ngIf="!item.track.fromChinaToAktobe" class="pi pi-circle" style="font-size: 25px"></i>
                 </div>
                 <div class="cardSubTitle">
-                  <span>Отправлено с Китая в Алматы:</span><br>
-                  <span>{{ item.track.fromChinaToAlmaty ? getFormattedDate(item.track.fromChinaToAlmaty) : ''  }}</span>
+                  <span>Отправлено с Китая в Актобе:</span><br>
+                  <span>{{ item.track.fromChinaToAktobe ? getFormattedDate(item.track.fromChinaToAktobe) : ''  }}</span>
                 </div>
               </div>
               <div class="cardSec mt-1">
                 <div class="iconSec">
-                  <i *ngIf="item.track.receivedInAlmatyDate" class="pi pi-check-circle" style="font-size: 25px"></i>
-                  <i *ngIf="!item.track.receivedInAlmatyDate" class="pi pi-circle" style="font-size: 25px"></i>
+                  <i *ngIf="item.track.passedTheBorder" class="pi pi-check-circle" style="font-size: 25px"></i>
+                  <i *ngIf="!item.track.passedTheBorder" class="pi pi-circle" style="font-size: 25px"></i>
                 </div>
                 <div class="cardSubTitle">
-                  <span>Получено на складе в Алматы:</span><br>
-                  <span>{{ item.track.receivedInAlmatyDate ? getFormattedDate(item.track.receivedInAlmatyDate) : ''  }}</span>
+                  <span>Прошла границу:</span><br>
+                  <span>{{ item.track.passedTheBorder ? getFormattedDate(item.track.passedTheBorder) : ''  }}</span>
                 </div>
               </div>
-              <div *ngIf="item.track.shippedFromAlmatyDate" class="cardSec mt-1">
+              <div class="cardSec mt-1">
                 <div class="iconSec">
-                  <i *ngIf="item.track.shippedFromAlmatyDate" class="pi pi-check-circle" style="font-size: 25px"></i>
-                  <i *ngIf="!item.track.shippedFromAlmatyDate" class="pi pi-circle" style="font-size: 25px"></i>
+                  <i *ngIf="item.track.receivedInAktobeDate" class="pi pi-check-circle" style="font-size: 25px"></i>
+                  <i *ngIf="!item.track.receivedInAktobeDate" class="pi pi-circle" style="font-size: 25px"></i>
                 </div>
                 <div class="cardSubTitle">
-                  <span>Отправлено из Алматы в город назначения:</span><br>
-                  <span>{{ item.track.shippedFromAlmatyDate ? getFormattedDate(item.track.shippedFromAlmatyDate) : ''  }}</span>
+                  <span>Получено на складе в Актобе:</span><br>
+                  <span>{{ item.track.receivedInAktobeDate ? getFormattedDate(item.track.receivedInAktobeDate) : ''  }}</span>
+                </div>
+              </div>
+              <div *ngIf="item.track.shippedFromAktobeDate" class="cardSec mt-1">
+                <div class="iconSec">
+                  <i *ngIf="item.track.shippedFromAktobeDate" class="pi pi-check-circle" style="font-size: 25px"></i>
+                  <i *ngIf="!item.track.shippedFromAktobeDate" class="pi pi-circle" style="font-size: 25px"></i>
+                </div>
+                <div class="cardSubTitle">
+                  <span>Отправлено из Актобе в город назначения:</span><br>
+                  <span>{{ item.track.shippedFromAktobeDate ? getFormattedDate(item.track.shippedFromAktobeDate) : ''  }}</span>
                 </div>
               </div>
               <div class="cardSec mt-1">

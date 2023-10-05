@@ -58,9 +58,10 @@ export class TracksComponent implements OnInit {
   selectedStatus: any;
   statuses = [
     { value: 'Дата получения на складе в Китае', key: 'receivedInChinaDate' },
-    { value: 'Дата отправления в Алматы', key: 'fromChinaToAlmaty' },
-    { value: 'Дата получения на складе в Алматы', key: 'receivedInAlmatyDate' },
-    { value: 'Дата отправления из Алматы в другой город', key: 'shippedFromAlmatyDate' },
+    { value: 'Дата отправления в Актобе', key: 'fromChinaToAktobe' },
+    { value: 'Дата прохождения границы', key: 'passedTheBorder' },
+    { value: 'Дата получения на складе в Актобе', key: 'receivedInAktobeDate' },
+    { value: 'Дата отправления из Актобе в другой город', key: 'shippedFromAktobeDate' },
     { value: 'Дата получения клиентом', key: 'receivedByClient' },
   ]
 
@@ -153,6 +154,8 @@ export class TracksComponent implements OnInit {
             itemValue = item['条码']
           } else if (item['内容']) {
             itemValue = item['内容']
+          } else if (item['track']) {
+            itemValue = item['track']
           }
           let newItem = {
             trackNumber: '',

@@ -60,8 +60,9 @@ export class TrackListComponent implements OnInit {
 
   trackForm: FormGroup = new FormGroup({
     trackNumber: new FormControl('', Validators.required),
-    fromChinaToAlmaty: new FormControl(''),
-    receivedInAlmatyDate: new FormControl(''),
+    fromChinaToAktobe: new FormControl(''),
+    receivedInAktobeDate: new FormControl(''),
+    passedTheBorder: new FormControl(''),
     receivedInChinaDate: new FormControl(''),
     receivedByClient: new FormControl(''),
   })
@@ -200,9 +201,10 @@ export class TrackListComponent implements OnInit {
       _id: new FormControl(track._id),
       trackNumber: new FormControl(track.trackNumber, Validators.required),
       receivedInChinaDate: new FormControl(track.receivedInChinaDate ? new Date(track.receivedInChinaDate) : ''),
-      receivedInAlmatyDate: new FormControl(track.receivedInAlmatyDate ? new Date(track.receivedInAlmatyDate) : ''),
-      fromChinaToAlmaty: new FormControl(track.fromChinaToAlmaty ? new Date(track.fromChinaToAlmaty) : ''),
+      receivedInAktobeDate: new FormControl(track.receivedInAktobeDate ? new Date(track.receivedInAktobeDate) : ''),
+      fromChinaToAktobe: new FormControl(track.fromChinaToAktobe ? new Date(track.fromChinaToAktobe) : ''),
       receivedByClient: new FormControl(track.receivedByClient ? new Date(track.receivedByClient) : ''),
+      passedTheBorder: new FormControl(track.passedTheBorder ? new Date(track.passedTheBorder) : ''),
     })
     console.log(this.trackForm)
     this.productDialog = true;

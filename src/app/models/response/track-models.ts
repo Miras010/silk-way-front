@@ -12,9 +12,10 @@ export interface Track {
   trackNumber: string,
   createdBy: string,
   createdDate: Date,
-  fromChinaToAlmaty: Date,
-  receivedInAlmatyDate: Date,
-  shippedFromAlmatyDate: Date,
+  fromChinaToAktobe: Date,
+  receivedInAktobeDate: Date,
+  shippedFromAktobeDate: Date,
   receivedInChinaDate: Date,
-  receivedByClient: Date
+  receivedByClient: Date,
+  passedTheBorder: Date
 }

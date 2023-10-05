@@ -20,7 +20,7 @@ function validateWhiteSpace(control: FormControl) {
 
 
 @Component({
-  selector: 'app-tracks',
+  selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   providers: [MessageService, DialogService],
@@ -30,6 +30,7 @@ function validateWhiteSpace(control: FormControl) {
 export class HomeComponent implements OnInit {
 
   loginForm: any;
+  activeIndex: number = 0;
   signupForm: any;
   isLoading: boolean = false;
   lastInputData: any
@@ -52,7 +53,8 @@ export class HomeComponent implements OnInit {
       phoneNumber: new FormControl('', Validators.required),
       mail: new FormControl('', [Validators.required, Validators.email]),
       username: new FormControl('', [Validators.required, validateWhiteSpace]),
-      password: new FormControl('', Validators.required)
+      password: new FormControl('', Validators.required),
+      checked: new FormControl(false, Validators.required)
     })
 
     this.getLastInputData()
@@ -98,7 +100,7 @@ export class HomeComponent implements OnInit {
   }
   register() {
     console.log('register')
-    if (this.signupForm.valid) {
+    if (this.signupForm.valid && this.signupForm.value.checked === true) {
       const symbols = ['+', '(', ')', ' ', '-']
       symbols.forEach(symbol => {
         this.signupForm.value.phoneNumber = this.signupForm.value.phoneNumber.replaceAll(symbol, '')
@@ -111,6 +113,8 @@ export class HomeComponent implements OnInit {
             summary: "Успешно",
             detail: "Пользователь успешно зарегистрирован!"
           });
+          this.activeIndex = 0
+          this.signupForm.reset()
           // setTimeout(() => {
           //   this.router.navigate(['login'])
           // }, 1000)

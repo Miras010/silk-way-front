@@ -84,30 +84,35 @@ export class TracksComponent implements OnInit {
 
   getBackground (item: any) {
     if (item.track.receivedByClient) {
-      return {'background': '#ffd4b0'}
-    } else if (item.track.receivedInAlmatyDate) {
-      return {'background': '#b9ffc7'}
-    } else if (item.track.fromChinaToAlmaty) {
-      return {'background': '#b7cfff'}
+      return {'background': 'orange'}
+    } else if (item.track.receivedInAktobeDate) {
+      return {'background': '#4be369'}
+    } else if (item.track.fromChinaToAktobe) {
+      return {'background': '#3f7af1'}
+    } else if (item.track.passedTheBorder) {
+      return {'background': '#4be369'}
     } else if (item.track.receivedInChinaDate) {
-      return {'background': '#fffebf'}
+      return {'background': '#ece942'}
     }
     return {'background': '#efefef'}
   }
 
   getTypeText(item: any) {
     if (item.track.receivedByClient) {
-      const date = getFormattedDate(item.track.receivedInAlmatyDate).split(' ')[0]
+      const date = getFormattedDate(item.track.receivedInAktobeDate).split(' ')[0]
       return 'получено клиентом' + ' - ' + date
     } else if (item.track.receivedInAlmatyDate) {
-      const date = getFormattedDate(item.track.receivedInAlmatyDate).split(' ')[0]
+      const date = getFormattedDate(item.track.receivedInAktobeDate).split(' ')[0]
       return 'в Алматы' + ' - ' + date
     } else if (item.track.fromChinaToAlmaty) {
-      const date =  getFormattedDate(item.track.fromChinaToAlmaty).split(' ')[0]
+      const date =  getFormattedDate(item.track.fromChinaToAktobe).split(' ')[0]
       return 'отправлено из Китая' + ' - ' + date
     } else if (item.track.receivedInChinaDate) {
       const date = getFormattedDate(item.track.receivedInChinaDate).split(' ')[0]
       return 'на складе в Китае' + ' - ' + date
+    } else if (item.track.passedTheBorder) {
+      const date = getFormattedDate(item.track.passedTheBorder).split(' ')[0]
+      return 'прошла границу' + ' - ' + date
     }
     return 'добавлено'
   }

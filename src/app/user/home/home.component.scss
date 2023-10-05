@@ -73,7 +73,7 @@
   height: 100%;
   min-height: 650px;
   //width: 100vw;
-  background-image: url("../../../assets/bg.png");
+  background-image: url("../../../assets/bg5.svg");
   //background-color: #b7892e;
   background-size: cover;
   background-position: center;
@@ -124,9 +124,38 @@
 .conditions {
   padding: 30px 0;
 }
-
-@media (max-width: 992px) {
-  .conditions {
-    padding-bottom: 150px;
-  }
+.checkbox-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.checkbox-form label {
+  color: orange;
+}
+
+.p-checkbox .p-checkbox-box.p-highlight {
+  border-color: orange;
+  background: orange;
+}
+
+.p-checkbox .p-checkbox-box:hover {
+  border-color: orange !important;
+}
+
+.p-checkbox .p-checkbox-box.p-focus {
+  border-color: orange;
+}
+
+
+.p-checkbox .p-checkbox-box.p-highlight:hover {
+  border-color: orange !important;
+  background: orange !important;
+}
+
+
+//@media (max-width: 992px) {
+//  .conditions {
+//    padding-bottom: 150px;
+//  }
+//}

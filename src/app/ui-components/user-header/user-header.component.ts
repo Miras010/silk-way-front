@@ -11,14 +11,10 @@ import {DialogService} from "primeng/dynamicdialog";
   styleUrls: ['./user-header.component.scss']
 })
 export class UserHeaderComponent implements OnInit {
-  logoPath = `assets/${environment.logoUrl}`
-  // @ts-ignore
-  userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    console.log('userInfo', this.userInfo.username)
   }
 
   isAuthorized () {

@@ -46,7 +46,7 @@ export class AuthService {
     if (sessionStorage.getItem(environment.rolePath) === 'admin') {
       this.router.navigate(['admin'])
     } else if (sessionStorage.getItem(environment.rolePath) === 'user') {
-      this.router.navigate(['user/track'])
+      this.router.navigate(['user'])
     }
   }
 

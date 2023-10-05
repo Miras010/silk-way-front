@@ -46,9 +46,10 @@
               <th style="min-width:15rem">Трек номер</th>
               <th pSortableColumn="createdDate">Дата создания</th>
               <th pSortableColumn="receivedInChinaDate">ДП на складе в Китае</th>
-              <th pSortableColumn="fromChinaToAlmaty">Отправлено с Китая в Алматы</th>
-              <th pSortableColumn="receivedInAlmatyDate">ДП на складе в Алматы</th>
-              <th pSortableColumn="receivedInAlmatyDate">ДП отправления из Алматы в другой город</th>
+              <th pSortableColumn="fromChinaToAktobe">Отправлено с Китая в Актобе</th>
+              <th pSortableColumn="passedTheBorder">Дата прохождения границы</th>
+              <th pSortableColumn="receivedInAktobeDate">ДП на складе в Актобе</th>
+              <th pSortableColumn="shippedFromAktobeDate">ДП отправления из Актобе в другой город</th>
               <th pSortableColumn="receivedByClient">Получено клиентом</th>
               <th></th>
             </tr>
@@ -61,9 +62,10 @@
               <td>{{track.trackNumber}}</td>
               <td>{{getFormattedDate(track.createdDate)}}</td>
               <td>{{getFormattedDate(track.receivedInChinaDate)}}</td>
-              <td>{{getFormattedDate(track.fromChinaToAlmaty)}}</td>
-              <td>{{getFormattedDate(track.receivedInAlmatyDate)}}</td>
-              <td>{{getFormattedDate(track.shippedFromAlmatyDate)}}</td>
+              <td>{{getFormattedDate(track.fromChinaToAktobe)}}</td>
+              <td>{{getFormattedDate(track.passedTheBorder)}}</td>
+              <td>{{getFormattedDate(track.receivedInAktobeDate)}}</td>
+              <td>{{getFormattedDate(track.shippedFromAktobeDate)}}</td>
               <td>{{getFormattedDate(track.receivedByClient)}}</td>
               <td>
                 <div class="d-flex">
@@ -88,17 +90,18 @@
               <label class="mb-2">Дата получения на складе в Китае</label>
               <p-calendar formControlName="receivedInChinaDate" dateFormat="dd.mm.yy" [showTime]="true" hourFormat="24" [showButtonBar]="true"></p-calendar>
             </div>
-
             <div class="field mt-3">
-              <label class="mb-2">Дата отправления в Алматы</label>
-              <p-calendar formControlName="fromChinaToAlmaty" dateFormat="dd.mm.yy" [showTime]="true" hourFormat="24" [showButtonBar]="true"></p-calendar>
+              <label class="mb-2">Дата отправления в Актобе</label>
+              <p-calendar formControlName="fromChinaToAktobe" dateFormat="dd.mm.yy" [showTime]="true" hourFormat="24" [showButtonBar]="true"></p-calendar>
             </div>
-
             <div class="field mt-3">
-              <label class="mb-2">Дата получения на складе в Алматы</label>
-              <p-calendar formControlName="receivedInAlmatyDate" dateFormat="dd.mm.yy" [showTime]="true" hourFormat="24" [showButtonBar]="true"></p-calendar>
+              <label class="mb-2">Дата прохождения границы</label>
+              <p-calendar formControlName="passedTheBorder" dateFormat="dd.mm.yy" [showTime]="true" hourFormat="24" [showButtonBar]="true"></p-calendar>
             </div>
-
+            <div class="field mt-3">
+              <label class="mb-2">Дата получения на складе в Актобе</label>
+              <p-calendar formControlName="receivedInAktobeDate" dateFormat="dd.mm.yy" [showTime]="true" hourFormat="24" [showButtonBar]="true"></p-calendar>
+            </div>
             <div class="field mt-3">
               <label class="mb-2">Дата получения клиентом</label>
               <p-calendar formControlName="receivedByClient" dateFormat="dd.mm.yy" [showTime]="true" hourFormat="24" [showButtonBar]="true"></p-calendar>
