@@ -1,13 +1,13 @@
 export const environment = {
-  // Zhappar
-  // apiUrl: 'https://zhappar-cargo.kz:5000/api',
-  // cargoType: 'logo',
-  // logoUrl: 'ZHAPPAR.png',
+  // PROD
+  apiUrl: 'https://silkway-cargo.kz:5000/api',
+  cargoType: 'logo',
+  logoUrl: 'silkway.png',
 
   // LOCALHOST
-  apiUrl: 'http://localhost:3000/api',
-  cargoType: 'logo',
-  logoUrl: 'logo.png',
+  // apiUrl: 'http://localhost:3000/api',
+  // cargoType: 'logo',
+  // logoUrl: 'logo.png',
 
   production: false,
   apiToken: 'apiToken',
