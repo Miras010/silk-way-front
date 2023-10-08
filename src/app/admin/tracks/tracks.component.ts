@@ -11,6 +11,7 @@ import { startOfMonth, endOfMonth } from 'date-fns'
 import { getFormattedDate } from '../../functionServices/dataService';
 import {AdminFileService} from "../../services/admin/admin-file.service";
 import {FileModel} from "../../models/response/file-model";
+import {CurrencyService} from "../../services/currency.service";
 
 @Component({
   selector: 'app-tracks',
@@ -28,10 +29,13 @@ import {FileModel} from "../../models/response/file-model";
 export class TracksComponent implements OnInit {
   totalRecords: number = 0;
   totalFiles: number = 0;
+  latestValue: any;
   loading: boolean = false
   productDialog: any
   addManyDialog: any
+  currencyDialog: boolean = false
   editingType: string = ''
+  currencyValue: string = ''
   tracks: Track[] = []
   file: File | undefined
   arrayBuffer: any
@@ -78,11 +82,21 @@ export class TracksComponent implements OnInit {
   constructor(private messageService: MessageService,
               private confirmationService: ConfirmationService,
               private adminFileService: AdminFileService,
+              private currencyService: CurrencyService,
               private adminTrackService: AdminTrackService) { }
 
   ngOnInit() {
     this.getAllFiles(this.defaultFilesParams)
+    this.getCurrency()
     // this.getAllTracks(this.defaultParams)
+  }
+
+  getCurrency () {
+    this.currencyService.getLatestValue().toPromise().then(resp => {
+      if (resp.length > 0) {
+        this.latestValue = resp[0].value
+      }
+    })
   }
 
   getAllFiles (params: any) {
@@ -134,12 +148,29 @@ export class TracksComponent implements OnInit {
     this.addManyDialog = true;
   }
 
+  openCurrency () {
+    this.currencyDialog = true;
+  }
+
   hideDialog() {
     this.productDialog = false;
   }
 
   hideManyDialog () {
     this.addManyDialog = false
+  }
+
+  currencySubmit () {
+    console.log('currencyValue', this.currencyValue)
+    this.currencyService.addValue({ value: this.currencyValue }).toPromise().then(() => {
+      this.currencyDialog = false
+      this.getCurrency()
+      this.currencyValue = ''
+      this.messageService.add({severity:'success', summary: 'Успешно', detail: 'Курс изменен', life: 3000});
+    })
+    .catch((err) => {
+      this.messageService.add({severity:'error', summary: 'Ошибка', detail: 'Не удалось обновить' + err.error.message, life: 3000});
+    })
   }
 
   async onManySubmit () {

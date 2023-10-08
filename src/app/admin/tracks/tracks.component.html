@@ -9,6 +9,9 @@
               <div class="mx-2">
                 <button pButton pRipple label="Загрузить" icon="pi pi-file" class="p-button" (click)="openMany()"></button>
               </div>
+              <div class="mx-2">
+                <button pButton pRipple label="Изменить курс" icon="pi pi-dollar" class="p-button" (click)="currencyDialog = true"></button>
+              </div>
             </div>
           </ng-template>
         </p-toolbar>
@@ -86,8 +89,22 @@
           </div>
         </ng-template>
         <ng-template pTemplate="footer">
-          <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideManyDialog()"></button>
-          <button [disabled]="loading" pButton pRipple type="submit" label="Save" icon="pi pi-check" (click)="onManySubmit()" class="p-button-text"></button>
+          <button pButton pRipple label="Отмена" icon="pi pi-times" class="p-button-text" (click)="hideManyDialog()"></button>
+          <button [disabled]="loading" pButton pRipple type="submit" label="Сохранить" icon="pi pi-check" (click)="onManySubmit()" class="p-button-text"></button>
+        </ng-template>
+      </p-dialog>
+
+      <p-dialog [(visible)]="currencyDialog" [style]="{width: '450px'}" header="Изменение актуального курса" [modal]="true" styleClass="p-fluid">
+        <ng-template pTemplate="content">
+          Актуальное значение: {{ latestValue }}
+          <div class="p-float-label w-100 mt-4">
+            <input class="form-control" id="float-input" type="number" pInputText [(ngModel)]="currencyValue" name="login">
+            <label for="float-input">Курс доллара</label>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="footer">
+          <button pButton pRipple label="Отмена" icon="pi pi-times" class="p-button-text" (click)="currencyDialog = false; currencyValue = ''"></button>
+          <button [disabled]="loading" pButton pRipple type="submit" label="Сохранить" icon="pi pi-check" (click)="currencySubmit()" class="p-button-text"></button>
         </ng-template>
       </p-dialog>
 

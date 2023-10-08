@@ -16,7 +16,7 @@
           <span class="text">Трек-номера</span>
         </div>
         <div (click)="route('/user/address')" [className]="currentUrl === '/user/address' ? 'active-block' : 'block'">
-          <i class="pi pi-send"></i>
+          <i class="pi pi-map"></i>
           <span class="text">Адрес склада</span>
         </div>
         <div *ngIf="isAuthorized()" (click)="route('/user/profile')" [className]="currentUrl === '/user/profile' ? 'active-block' : 'block'">
@@ -24,7 +24,7 @@
           <span class="text">Личный кабинет</span>
         </div>
         <div (click)="route('/user/calculator')" [className]="currentUrl === '/user/calculator' ? 'active-block' : 'block'">
-          <i class="pi pi-box"></i>
+          <i class="pi pi-calculator"></i>
           <span class="text">Калькулятор</span>
         </div>
       </div>

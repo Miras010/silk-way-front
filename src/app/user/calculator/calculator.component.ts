@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core'
 import {FormControl, FormGroup} from "@angular/forms";
-import {CurrencyService} from "../../services/currency";
+import {CurrencyService} from "../../services/currency.service";
 // @ts-ignore
 import {getDateDay} from '../../functionServices/dataService'
 
@@ -40,13 +40,23 @@ export class CalculatorComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.getActuallyCurrencyRate()
+    this.getActuallyCurrency()
   }
 
-  getActuallyCurrencyRate () {
-    const date = getDateDay(new Date())
-    this.currencyService.getCurrencyRateByDate(date).toPromise().then((resp) => {
-      console.log('resp', resp)
+  getActuallyCurrency () {
+    this.currencyService.getLatestValue().toPromise().then((resp) => {
+      if (resp.length > 0) {
+        const latestValue = resp[0].value
+        this.form1.patchValue({
+          course: latestValue
+        })
+        this.form2.patchValue({
+          course: latestValue
+        })
+        this.form3.patchValue({
+          course: latestValue
+        })
+      }
     })
   }
 
