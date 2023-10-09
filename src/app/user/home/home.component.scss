@@ -154,8 +154,8 @@
 }
 
 
-//@media (max-width: 992px) {
-//  .conditions {
-//    padding-bottom: 150px;
-//  }
-//}
+@media (max-width: 992px) {
+  .main {
+    background-image: url("../../../assets/mobile-bg.svg");
+  }
+}
