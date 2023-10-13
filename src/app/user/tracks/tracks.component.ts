@@ -88,7 +88,7 @@ export class TracksComponent implements OnInit {
     } else if (item.track.receivedInAktobeDate) {
       return {'background': '#4be369'}
     } else if (item.track.fromChinaToAktobe) {
-      return {'background': '#3f7af1'}
+      return {'background': '#7cc8ff'}
     } else if (item.track.passedTheBorder) {
       return {'background': '#4be369'}
     } else if (item.track.receivedInChinaDate) {

@@ -153,6 +153,15 @@
   background: orange !important;
 }
 
+.link {
+  color: orange;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #af7200;
+  text-decoration: none;
+}
 
 @media (max-width: 992px) {
   .main {

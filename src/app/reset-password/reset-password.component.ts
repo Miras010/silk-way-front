@@ -54,7 +54,7 @@ export class ResetPasswordComponent implements OnInit {
               detail: "Пароль успешно изменен!"
             });
             setTimeout(() => {
-              this.router.navigate(['login'])
+              this.router.navigate(['/user/home'])
             }, 1000)
         }).catch((err) => {
         console.log(err);

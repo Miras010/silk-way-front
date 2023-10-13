@@ -34,6 +34,13 @@ export class CalculatorComponent implements OnInit {
     weight: new FormControl(null),
     sum: new FormControl(0)
   })
+  form4: FormGroup = new FormGroup({
+    price: new FormControl(4.4),
+    priceText: new FormControl('4.4$'),
+    course: new FormControl(477),
+    weight: new FormControl(null),
+    sum: new FormControl(0)
+  })
 
   constructor(private currencyService: CurrencyService) {
 
@@ -54,6 +61,9 @@ export class CalculatorComponent implements OnInit {
           course: latestValue
         })
         this.form3.patchValue({
+          course: latestValue
+        })
+        this.form4.patchValue({
           course: latestValue
         })
       }
@@ -77,6 +87,14 @@ export class CalculatorComponent implements OnInit {
   }
 
   weightChange3 () {
+    const formData = this.form3.getRawValue()
+    const res = Math.round(formData.weight * formData.price * formData.course)
+    this.form3.patchValue({
+      sum: res
+    })
+  }
+
+  weightChange4 () {
     const formData = this.form3.getRawValue()
     const res = Math.round(formData.weight * formData.price * formData.course)
     this.form3.patchValue({
