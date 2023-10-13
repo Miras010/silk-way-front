@@ -54,15 +54,14 @@ export class ForgotPasswordComponent implements OnInit {
             this.messageService.add({
               severity: "success",
               summary: "Успешно",
-              detail: "На Вашу почту придет ссылка для изменений пароля!"
+              detail: "На Вашу почту придет ссылка для изменений пароля! Сейчас вас перенесет на главную страницу"
             });
             setTimeout(() => {
               this.router.navigate(['login'])
-            }, 3000)
+            }, 5000)
         }).catch((err) => {
         console.log(err);
         this.messageService.add({severity:'error', summary: 'Ошибка', detail: err.error.message, life: 3000});
-      }).finally(() => {
         this.isLoading = false
       })
     } else {

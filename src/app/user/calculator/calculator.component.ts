@@ -95,9 +95,9 @@ export class CalculatorComponent implements OnInit {
   }
 
   weightChange4 () {
-    const formData = this.form3.getRawValue()
+    const formData = this.form4.getRawValue()
     const res = Math.round(formData.weight * formData.price * formData.course)
-    this.form3.patchValue({
+    this.form4.patchValue({
       sum: res
     })
   }
