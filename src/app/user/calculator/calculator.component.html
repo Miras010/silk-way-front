@@ -55,52 +55,52 @@
           </form>
         </p-card>
       </div>
-      <div class="col-md-6 col-12 mt-4">
-        <p-card>
-          <form [formGroup]="form3">
-            <div class="input-row mb-3">
-              <span>1 кг</span>
-              <input type="text" pInputText formControlName="priceText" [readOnly]="true" />
-            </div>
-            <div class="input-row mb-3">
-              <span>Курс $</span>
-              <input type="text" pInputText formControlName="course" [readOnly]="true" />
-            </div>
-            <div class="input-row">
-              <span>Вес товара</span>
-              <input type="number" pInputText formControlName="weight" (input)="weightChange3()" />
-            </div>
-            <p-divider></p-divider>
-            <div class="sum-section">
-              <span>Сумма</span> <br>
-              <span class="sum">{{ form3.getRawValue().sum }} ₸</span>
-            </div>
-          </form>
-        </p-card>
-      </div>
-      <div class="col-md-6 col-12 mt-4">
-        <p-card>
-          <form [formGroup]="form4">
-            <div class="input-row mb-3">
-              <span>1 кг</span>
-              <input type="text" pInputText formControlName="priceText" [readOnly]="true" />
-            </div>
-            <div class="input-row mb-3">
-              <span>Курс $</span>
-              <input type="text" pInputText formControlName="course" [readOnly]="true" />
-            </div>
-            <div class="input-row">
-              <span>Вес товара</span>
-              <input type="number" pInputText formControlName="weight" (input)="weightChange4()" />
-            </div>
-            <p-divider></p-divider>
-            <div class="sum-section">
-              <span>Сумма</span> <br>
-              <span class="sum">{{ form4.getRawValue().sum }} ₸</span>
-            </div>
-          </form>
-        </p-card>
-      </div>
+<!--      <div class="col-md-6 col-12 mt-4">-->
+<!--        <p-card>-->
+<!--          <form [formGroup]="form3">-->
+<!--            <div class="input-row mb-3">-->
+<!--              <span>1 кг</span>-->
+<!--              <input type="text" pInputText formControlName="priceText" [readOnly]="true" />-->
+<!--            </div>-->
+<!--            <div class="input-row mb-3">-->
+<!--              <span>Курс $</span>-->
+<!--              <input type="text" pInputText formControlName="course" [readOnly]="true" />-->
+<!--            </div>-->
+<!--            <div class="input-row">-->
+<!--              <span>Вес товара</span>-->
+<!--              <input type="number" pInputText formControlName="weight" (input)="weightChange3()" />-->
+<!--            </div>-->
+<!--            <p-divider></p-divider>-->
+<!--            <div class="sum-section">-->
+<!--              <span>Сумма</span> <br>-->
+<!--              <span class="sum">{{ form3.getRawValue().sum }} ₸</span>-->
+<!--            </div>-->
+<!--          </form>-->
+<!--        </p-card>-->
+<!--      </div>-->
+<!--      <div class="col-md-6 col-12 mt-4">-->
+<!--        <p-card>-->
+<!--          <form [formGroup]="form4">-->
+<!--            <div class="input-row mb-3">-->
+<!--              <span>1 кг</span>-->
+<!--              <input type="text" pInputText formControlName="priceText" [readOnly]="true" />-->
+<!--            </div>-->
+<!--            <div class="input-row mb-3">-->
+<!--              <span>Курс $</span>-->
+<!--              <input type="text" pInputText formControlName="course" [readOnly]="true" />-->
+<!--            </div>-->
+<!--            <div class="input-row">-->
+<!--              <span>Вес товара</span>-->
+<!--              <input type="number" pInputText formControlName="weight" (input)="weightChange4()" />-->
+<!--            </div>-->
+<!--            <p-divider></p-divider>-->
+<!--            <div class="sum-section">-->
+<!--              <span>Сумма</span> <br>-->
+<!--              <span class="sum">{{ form4.getRawValue().sum }} ₸</span>-->
+<!--            </div>-->
+<!--          </form>-->
+<!--        </p-card>-->
+<!--      </div>-->
     </div>
   </div>
 </div>
