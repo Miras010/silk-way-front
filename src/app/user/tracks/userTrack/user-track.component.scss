@@ -102,29 +102,59 @@
 .p-button.p-button-text {
   color: orange;
 }
-.select-btns {
-  display: flex;
-  justify-content: center;
+
+
+/* Hide the default checkbox */
+.track-card input[type="checkbox"] {
+  display: none;
 }
-.btns-sec {
-  position: fixed;
-  bottom: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  flex-direction: column;
+
+/* Create custom checkbox */
+.track-card .checkbox-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #555;
+  border-radius: 50%; /* Making it round */
+  display: inline-block;
+  position: relative;
 }
-.btns-sec button {
-  border: none;
-  padding: 10px 15px;
-  border-radius: 25px;
-  color: white;
+
+/* Create custom checkmark */
+.track-card .checkbox-custom::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #555;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0); /* Hide checkmark initially */
+  transition: transform 0.3s ease-in-out;
 }
-.deleteBtn {
-  background-color: #ef3d3d;
-  margin-right: 20px;
+
+/* Show the checkmark when the checkbox is checked */
+.track-card input[type="checkbox"]:checked + .checkbox-custom::after {
+  transform: translate(-50%, -50%) scale(1);
 }
-.cancelBtn {
+
+
+input[type="checkbox"] {
+  display: none;
+}
+
+/* Стилизация кастомного чекбокса */
+label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border: 2px solid orange;
+  border-radius: 50%; /* делаем круглым */
+  cursor: pointer;
+}
+
+/* Изменение цвета чекбокса при нажатии */
+input[type="checkbox"]:checked + label {
   background-color: orange;
 }

@@ -18,86 +18,46 @@
                   icon="pi pi-plus"
                   iconPos="left"></p-button>
       </div>
+      <div class="mt-3">
+<!--        <p class="mb-3 welcomeText">Сортировка по:</p>-->
+        <p-dropdown [options]="sortOptions" [(ngModel)]="sortValue" (onChange)="sortChange()" optionLabel="name" placeholder="Сортировка по"></p-dropdown>
+<!--        <p-listbox [options]="sortOptions" [(ngModel)]="sortValue" optionLabel="name" [style]="{'width':'15rem'}" [listStyle]="{'max-height': '220px'}"></p-listbox>-->
+<!--        <p-selectButton [options]="sortOptions" [(ngModel)]="sortValue" optionLabel="label" optionValue="value"></p-selectButton>-->
+      </div>
     </p-card>
-    <div class="row">
-      <div *ngFor="let item of data" class="col-lg-4 col-md-6 col-12">
-        <div class="mt-3">
-          <div class="mt-2 trackCard">
-            <div class="cardHeader" [style]="getBackground(item)">
-              <span class="cardTitle">{{ item.track.trackNumber }}</span>
-              <div>
-                <i (click)="deleteTrack(item)" class="pi pi-trash" style="font-size: 25px; cursor: pointer;"></i>
-              </div>
-            </div>
-            <div class="cardBody">
-              <div>
-                <span class="cardDesc">{{ item.description }}</span>
-              </div>
-              <div class="cardSec mt-3">
-                <div class="iconSec">
-                  <i *ngIf="item.track.receivedInChinaDate" class="pi pi-check-circle" style="font-size: 25px"></i>
-                  <i *ngIf="!item.track.receivedInChinaDate" class="pi pi-circle" style="font-size: 25px"></i>
-                </div>
-                <div class="cardSubTitle">
-                  <span>Получено на складе в Китае:</span><br>
-                  <span>{{ item.track.receivedInChinaDate ? getFormattedDate(item.track.receivedInChinaDate) : ''  }}</span>
-                </div>
-              </div>
-              <div class="cardSec mt-1">
-                <div class="iconSec">
-                  <i *ngIf="item.track.fromChinaToAktobe" class="pi pi-check-circle" style="font-size: 25px"></i>
-                  <i *ngIf="!item.track.fromChinaToAktobe" class="pi pi-circle" style="font-size: 25px"></i>
-                </div>
-                <div class="cardSubTitle">
-                  <span>Отправлено с Китая в Актобе:</span><br>
-                  <span>{{ item.track.fromChinaToAktobe ? getFormattedDate(item.track.fromChinaToAktobe) : ''  }}</span>
-                </div>
-              </div>
-              <div class="cardSec mt-1">
-                <div class="iconSec">
-                  <i *ngIf="item.track.passedTheBorder" class="pi pi-check-circle" style="font-size: 25px"></i>
-                  <i *ngIf="!item.track.passedTheBorder" class="pi pi-circle" style="font-size: 25px"></i>
-                </div>
-                <div class="cardSubTitle">
-                  <span>Прошла границу:</span><br>
-                  <span>{{ item.track.passedTheBorder ? getFormattedDate(item.track.passedTheBorder) : ''  }}</span>
-                </div>
-              </div>
-              <div class="cardSec mt-1">
-                <div class="iconSec">
-                  <i *ngIf="item.track.receivedInAktobeDate" class="pi pi-check-circle" style="font-size: 25px"></i>
-                  <i *ngIf="!item.track.receivedInAktobeDate" class="pi pi-circle" style="font-size: 25px"></i>
-                </div>
-                <div class="cardSubTitle">
-                  <span>Получено на складе в Актобе:</span><br>
-                  <span>{{ item.track.receivedInAktobeDate ? getFormattedDate(item.track.receivedInAktobeDate) : ''  }}</span>
-                </div>
-              </div>
-              <div *ngIf="item.track.shippedFromAktobeDate" class="cardSec mt-1">
-                <div class="iconSec">
-                  <i *ngIf="item.track.shippedFromAktobeDate" class="pi pi-check-circle" style="font-size: 25px"></i>
-                  <i *ngIf="!item.track.shippedFromAktobeDate" class="pi pi-circle" style="font-size: 25px"></i>
-                </div>
-                <div class="cardSubTitle">
-                  <span>Отправлено из Актобе в город назначения:</span><br>
-                  <span>{{ item.track.shippedFromAktobeDate ? getFormattedDate(item.track.shippedFromAktobeDate) : ''  }}</span>
-                </div>
-              </div>
-              <div class="cardSec mt-1">
-                <div class="iconSec">
-                  <i *ngIf="item.track.receivedByClient" class="pi pi-check-circle" style="font-size: 25px"></i>
-                  <i *ngIf="!item.track.receivedByClient" class="pi pi-circle" style="font-size: 25px"></i>
-                </div>
-                <div class="cardSubTitle">
-                  <span>Получено клиентом:</span><br>
-                  <span>{{ item.track.receivedByClient ? getFormattedDate(item.track.receivedByClient) : '' }}</span>
-                </div>
-              </div>
-            </div>
+    <div *ngIf="sortedData">
+      <div *ngFor="let item of sortedData">
+        <div class="row">
+          <div class="mt-3">{{ getSelectDate(item) }}</div>
+          <div *ngFor="let i of item" class="col-lg-4 col-md-6 col-12">
+            <app-user-track [item]="i"
+                            [sortValue]="sortValue"
+                            (deleteTrack)="deleteTrack($event)"
+                            (selectionChanged)="updateSelectedTracks($event, i)"
+            ></app-user-track>
           </div>
         </div>
       </div>
-
     </div>
+    <div *ngIf="!sortedData" class="row">
+      <div *ngFor="let item of data" class="col-lg-4 col-md-6 col-12">
+        <app-user-track [item]="item"
+                        [sortValue]="sortValue"
+                        (deleteTrack)="deleteTrack($event)"
+                        (selectionChanged)="updateSelectedTracks($event, item)"
+        ></app-user-track>
+      </div>
+    </div>
+
   </div>
 </div>
+<div class="btns-sec">
+  <div class="select-btns">
+    <button *ngIf="selectedTracks.length > 0" (click)="deleteTracks()" class="deleteBtn">Удалить все ({{ selectedTracks.length }})</button>
+    <button *ngIf="selectedTracks.length > 0" (click)="cancelSelect()" class="cancelBtn">Отменить выделение</button>
+  </div>
+  <div class="mt-3">
+    <button *ngIf="sortValue" (click)="cancelSort()" class="cancelBtn">Сбросить сортировку</button>
+  </div>
+</div>
+

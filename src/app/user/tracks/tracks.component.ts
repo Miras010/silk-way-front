@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core'
+import {Component, OnInit, QueryList, ViewChildren, ViewEncapsulation} from '@angular/core'
 import {ConfirmationService, MessageService} from 'primeng/api'
 import {TrackService} from "../../services/track.service"
 import {UsersTrack } from '../../models/response/track-models'
@@ -8,6 +8,7 @@ import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import {DialogComponent} from "../dialog/dialog.component";
 import {Track} from '../../models/response/track-models'
 import {CardComponent} from "../cardInfo/card.component";
+import {UserTrackComponent} from "./userTrack/user-track.component";
 
 @Component({
   selector: 'app-tracks',
@@ -19,11 +20,18 @@ import {CardComponent} from "../cardInfo/card.component";
 export class TracksComponent implements OnInit {
   totalTracks: number = 0
   data: Array<UsersTrack> = []
+  sortedData: any
+  dataAll: Array<UsersTrack> = []
+  selectedTracks: UsersTrack[] = [];
   isLoading: boolean = false
+  sortValue: any = ''
+  sortOptions: any[] = [];
   // @ts-ignore
   userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
   // @ts-ignore
   ref: DynamicDialogRef;
+  @ViewChildren(UserTrackComponent) trackCardComponents: QueryList<UserTrackComponent>;
+
 
   constructor(private messageService: MessageService,
               private trackService: TrackService,
@@ -32,9 +40,117 @@ export class TracksComponent implements OnInit {
 
   ngOnInit() {
     this.getTracks()
+    this.sortOptions = [
+      {name: 'Получено на складе в Китае', code: 'receivedInChinaDate'},
+      {name: 'Отправлено с Китая в Актобе', code: 'fromChinaToAktobe'},
+      {name: 'Прошла границу', code: 'passedTheBorder'},
+      {name: 'Получено на складе в Актобе', code: 'receivedInAktobeDate'},
+      {name: 'Получено клиентом', code: 'receivedByClient'}
+    ]
   }
 
-  async getTracks () {
+  sortChange () {
+    this.cancelSelect()
+    // @ts-ignore
+    // @ts-ignore
+    this.data = this.dataAll.filter((track) => {
+      if (track.track.receivedByClient) {
+        return this.sortValue.code === 'receivedByClient'
+      } else if (track.track.receivedInAktobeDate) {
+        return this.sortValue.code === 'receivedInAktobeDate'
+      } else if (track.track.passedTheBorder) {
+        return this.sortValue.code === 'passedTheBorder'
+      } else if (track.track.fromChinaToAktobe) {
+        return this.sortValue.code === 'fromChinaToAktobe'
+      } else if (track.track.receivedInChinaDate) {
+        return this.sortValue.code === 'receivedInChinaDate'
+      }
+      return false
+    }).sort((a: UsersTrack, b: UsersTrack) => {
+      if (this.sortValue.code) {
+        // @ts-ignore
+        return new Date(b.track[this.sortValue.code]) - new Date(a.track[this.sortValue.code])
+      }
+      return 0
+    })
+    const res = {}
+    this.data.forEach(item => {
+      // @ts-ignore
+      res[getFormattedDate(item.track[this.sortValue.code])] = []
+    })
+    this.data.forEach(item => {
+      // @ts-ignore
+      res[getFormattedDate(item.track[this.sortValue.code])].push(item)
+    })
+    this.sortedData = Object.values(res)
+    console.log('s', this.sortedData)
+  }
+
+  getSelectDate (arr: any[]) {
+    if (arr.length > 0) {
+      return getFormattedDate(arr[0].track[this.sortValue.code]).split(' ')[0]
+    } else {
+      return ''
+    }
+  }
+
+  deleteTracks () {
+    this.confirmationService.confirm({
+      message: 'Вы уверены что хотите удалить ' + this.selectedTracks.length + ' трек кодов ?',
+      header: 'Подтверждение',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        const promises: any[] = []
+        this.selectedTracks.forEach(track => {
+          promises.push(this.trackService.unfollowTrack(track._id).toPromise())
+        })
+          Promise.all(promises)
+            .then(() => {
+              this.selectedTracks = []
+              this.messageService.add({
+                severity: "success",
+                summary: "Успешно",
+                detail: "Трек номера успешно удалены!"
+              });
+              this.ref.close()
+              this.getTracks()
+            }).catch((err) => {
+              this.messageService.add({
+                severity: "info",
+                summary: "Ошибка при удалении",
+                detail: err.error.message
+              });
+              console.log('err', err)
+            })
+      }
+    })
+  }
+
+  cancelSort () {
+    this.sortValue = ''
+    this.sortedData = ''
+    this.data = [...this.dataAll]
+  }
+
+  cancelSelect () {
+    this.selectedTracks = []
+    this.trackCardComponents.forEach(component => component.clearSelection());
+  }
+
+  updateSelectedTracks(isSelected: boolean, track: UsersTrack) {
+    if (isSelected) {
+      this.selectedTracks.push(track);
+    } else {
+      const index = this.selectedTracks.indexOf(track);
+      if (index !== -1) {
+        this.selectedTracks.splice(index, 1);
+      }
+    }
+    console.log('ss', this.selectedTracks)
+  }
+
+
+  getTracks () {
     this.isLoading = true
     this.trackService.getAllUsersTrack().subscribe(async (resp: any) => {
         this.data = resp.filter((item: any) => {
@@ -42,7 +158,10 @@ export class TracksComponent implements OnInit {
         }).sort((a: UsersTrack, b: UsersTrack) => {
           return new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime()
         })
+      this.dataAll = [...this.data]
       this.totalTracks = this.data.length
+      this.cancelSort()
+      this.cancelSelect()
       },
       (error: any) => {
       console.log('error', error)

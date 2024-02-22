@@ -7,7 +7,7 @@ import {CardModule} from "primeng/card";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UserHeaderComponent} from "../ui-components/user-header/user-header.component";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
-import {NgForOf, NgIf, NgStyle} from "@angular/common";
+import {KeyValuePipe, NgForOf, NgIf, NgStyle} from "@angular/common";
 import {AccordionModule} from "primeng/accordion";
 import {ButtonModule} from "primeng/button";
 import {DialogComponent} from "./dialog/dialog.component";
@@ -31,30 +31,34 @@ import {CalculatorComponent} from "./calculator/calculator.component";
 import {UserFooterComponent} from "../ui-components/user-footer/user-footer.component";
 import {CheckboxModule} from "primeng/checkbox";
 import {AddressComponent} from "./address/address.component";
+import {UserTrackComponent} from "./tracks/userTrack/user-track.component";
+import {DropdownModule} from "primeng/dropdown";
 
 @NgModule({
-    imports: [
-        UserRoutingModule,
-        CardModule,
-        FormsModule,
-        ProgressSpinnerModule,
-        NgIf,
-        AccordionModule,
-        NgForOf,
-        ButtonModule,
-        ToastModule,
-        ReactiveFormsModule,
-        InputTextModule,
-        InputTextareaModule,
-        ConfirmDialogModule,
-        DialogModule,
-        RippleModule,
-        NgStyle,
-        InputMaskModule,
-        TabViewModule,
-        DividerModule,
-        CheckboxModule
-    ],
+  imports: [
+    UserRoutingModule,
+    CardModule,
+    FormsModule,
+    ProgressSpinnerModule,
+    NgIf,
+    AccordionModule,
+    NgForOf,
+    ButtonModule,
+    ToastModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    InputTextareaModule,
+    ConfirmDialogModule,
+    DialogModule,
+    RippleModule,
+    NgStyle,
+    InputMaskModule,
+    TabViewModule,
+    DividerModule,
+    CheckboxModule,
+    DropdownModule,
+    KeyValuePipe
+  ],
     exports: [
         NewUserHeaderComponent,
         UserHeaderComponent
@@ -72,7 +76,8 @@ import {AddressComponent} from "./address/address.component";
     MyButtonComponent,
     CalculatorComponent,
     UserFooterComponent,
-    AddressComponent
+    AddressComponent,
+    UserTrackComponent
   ],
   providers: [ConfirmationService],
 })
