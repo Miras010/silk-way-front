@@ -19,10 +19,10 @@ export class AddressComponent implements OnInit {
   }
 
   copyAddress () {
-    this.clipboard.copy('8988-ваш код\n' +
-      '13288822727 \n' +
-      '广东省  广州市  白云区\n' +
-      '西槎路明德街21号B108铺库房810-麦头8988-ваш код')
+    this.clipboard.copy('努尔波+код\n' +
+      '13078833342\n' +
+      '广东省 佛山市 南海区\n' +
+      '里水镇新联工业区工业大道东一路3号航达В01库区-努尔波90+ваш код')
     this.messageService.add({
       severity: "success",
       summary: "Адрес скопирован!",
