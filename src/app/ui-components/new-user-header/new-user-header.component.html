@@ -15,6 +15,10 @@
           <i class="pi pi-send"></i>
           <span class="text">Трек-номера</span>
         </div>
+        <div (click)="route('/user/auto-tracking')" [className]="currentUrl === '/user/auto-tracking' ? 'active-block' : 'block'">
+          <i class="pi pi-map-marker"></i>
+          <span class="text">Авто отслеживание</span>
+        </div>
         <div (click)="route('/user/address')" [className]="currentUrl === '/user/address' ? 'active-block' : 'block'">
           <i class="pi pi-map"></i>
           <span class="text">Адрес склада</span>

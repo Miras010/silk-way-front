@@ -33,6 +33,7 @@ import {CheckboxModule} from "primeng/checkbox";
 import {AddressComponent} from "./address/address.component";
 import {UserTrackComponent} from "./tracks/userTrack/user-track.component";
 import {DropdownModule} from "primeng/dropdown";
+import {AutoTrackingComponent} from "./auto-tracking/auto-tracking.component";
 
 @NgModule({
   imports: [
@@ -77,7 +78,8 @@ import {DropdownModule} from "primeng/dropdown";
     CalculatorComponent,
     UserFooterComponent,
     AddressComponent,
-    UserTrackComponent
+    UserTrackComponent,
+    AutoTrackingComponent
   ],
   providers: [ConfirmationService],
 })
