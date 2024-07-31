@@ -34,39 +34,44 @@ import {SkeletonModule} from "primeng/skeleton";
 import {AutoCompleteModule} from "primeng/autocomplete";
 import {ScanComponent} from "./scan/scan.component";
 import {TrackListComponent} from "./trackList/track-list.component";
+import {DeliveryRequestsComponent} from "./deliveryRequests/deliveryRequests.component";
+import {TooltipModule} from "primeng/tooltip";
+import {TabMenuModule} from "primeng/tabmenu";
 
 @NgModule({
-  imports: [
-    AdminRoutingModule,
-    CardModule,
-    FormsModule,
-    ProgressSpinnerModule,
-    NgIf,
-    AccordionModule,
-    NgForOf,
-    ButtonModule,
-    ToastModule,
-    ReactiveFormsModule,
-    InputTextModule,
-    InputTextareaModule,
-    ToolbarModule,
-    FileUploadModule,
-    TableModule,
-    RatingModule,
-    DialogModule,
-    DropdownModule,
-    RadioButtonModule,
-    InputNumberModule,
-    RippleModule,
-    ConfirmDialogModule,
-    CalendarModule,
-    CascadeSelectModule,
-    InputMaskModule,
-    CheckboxModule,
-    MultiSelectModule,
-    SkeletonModule,
-    AutoCompleteModule,
-  ],
+    imports: [
+        AdminRoutingModule,
+        CardModule,
+        FormsModule,
+        ProgressSpinnerModule,
+        NgIf,
+        AccordionModule,
+        NgForOf,
+        ButtonModule,
+        ToastModule,
+        ReactiveFormsModule,
+        InputTextModule,
+        InputTextareaModule,
+        ToolbarModule,
+        FileUploadModule,
+        TableModule,
+        RatingModule,
+        DialogModule,
+        DropdownModule,
+        RadioButtonModule,
+        InputNumberModule,
+        RippleModule,
+        ConfirmDialogModule,
+        CalendarModule,
+        CascadeSelectModule,
+        InputMaskModule,
+        CheckboxModule,
+        MultiSelectModule,
+        SkeletonModule,
+        AutoCompleteModule,
+        TooltipModule,
+        TabMenuModule,
+    ],
   exports: [
   ],
   declarations: [
@@ -76,7 +81,8 @@ import {TrackListComponent} from "./trackList/track-list.component";
     ReceiptsComponent,
     AdminHeaderComponent,
     UsersComponent,
-    ScanComponent
+    ScanComponent,
+    DeliveryRequestsComponent
   ],
 })
 

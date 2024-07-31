@@ -8,14 +8,14 @@
 .nav {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 .navBlock {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 90%;
+  width: 100%;
 }
 
 .block {

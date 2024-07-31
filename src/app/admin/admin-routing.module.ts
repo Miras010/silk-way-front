@@ -6,6 +6,7 @@ import {TracksComponent} from "./tracks/tracks.component";
 import {UsersComponent} from "./users/users.component";
 import {ReceiptsComponent} from "./receipts/receipts.component";
 import {TrackListComponent} from "./trackList/track-list.component";
+import {DeliveryRequestsComponent} from "./deliveryRequests/deliveryRequests.component";
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
     {
       path: 'users',
       component: UsersComponent
+    },
+    {
+      path: 'delivery/:status',
+      component: DeliveryRequestsComponent
     },
     {
       path: '',

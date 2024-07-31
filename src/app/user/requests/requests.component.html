@@ -1,0 +1,100 @@
+<div class="progress-spinner" *ngIf="isLoading">
+  <p-progressSpinner></p-progressSpinner>
+</div>
+<div>
+  <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+  <p-toast position="top-center"></p-toast>
+</div>
+<div class="trackPage">
+  <div class="container">
+    <p-card>
+      <span class="welcomeText">Условия доставки по городу / Қала ішінде жеткізу шарттары</span>
+      <br>
+      <br>
+      Заявка на доставку по городу от дверей до дверей подается до 14:00 дня, а доставка осуществляется после обеда с 14:00-19:00. Заявки поданные после 14:00, остаются на следующий день.<br><br>
+      Стоимость доставки по городу:<br>
+      •⁠  ⁠Доставки в радиусе 2км от склада - 500тг<br>
+      •⁠  ⁠Доставки на расстояние свыше 2км от склада - 800тг<br>
+      •⁠  ⁠Районы Акжар, Кирпичный, Кызылжар, ГМЗ, Авиагородок - 1200тг<br>
+
+      Для подачи заявки заполните данные внизу и нажмите «Отправить» (или подать заявку), и мы с вами свяжемся по WhatsApp. 😉<br>
+      <hr>
+      <br>
+      Қала ішінде есікке дейін жеткізуге тапсырыс күндізгі сағат 14:00-ге қабылданады, ал жеткізу сағат 14:00-19:00 аралығында жүзеге асырылады. Сағат 14:00-ден кейін берілген тапсырыстар келесі күнге ауыстырылады.<br><br>
+      Қала ішінде жеткізу құны:<br>
+      •⁠  ⁠Қоймадан 2 км радиуста қашықтықта жеткізу – 500тг<br>
+      •⁠  ⁠Қоймадан 2 км-ден астам қашықтыққа жеткізу – 800тг<br>
+      •⁠  ⁠Ақжар, Кирпичный, Қызылжар, ГМЗ, Авиагородок аудандарына – 1200тг<br>
+      <br>
+      Жеткізуге тапсырыс жасау үшін төмендегі мәліметтерді толтырып, «Отправить» түймесін басыңыз (немесе Подать заявку), сосын біз сізге WhatsApp арқылы хабарласамыз. 😉
+    </p-card>
+    <div class="mb-3"></div>
+    <p-card>
+      <div class="mt-3">
+        <span class="welcomeText">Заявки на доставку</span>
+      </div>
+      <div class="mt-3">
+        <p-button (click)="createRequest()"
+                  label="Подать заявку заявку на доставку по городу"
+                  styleClass="p-button-raised p-button-text"
+                  icon="pi pi-plus"
+                  iconPos="left"></p-button>
+      </div>
+    </p-card>
+    <div *ngFor="let item of data">
+      <div class="mt-3">
+        <div class="card" [style]="getBackground(item)">
+          <div class="field mb-2">
+            <span class="title">Заявка на </span><span class="value title">{{item.createdDate}}</span>
+          </div>
+          <div class="field mb-2">
+            <span class="text">Статус:  </span><span class="value status">{{ getStatusTitle(item.status) }}</span>
+          </div>
+          <div class="field mb-2">
+            <span class="text">Адрес:  </span><span class="value">{{item.address + ', ' + item.apartment }}</span>
+          </div>
+          <div class="field mb-2">
+            <span class="text">Комментарий:  </span><span class="value">{{item.description}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p-dialog [(visible)]="requestDialog" [style]="{width: '450px'}" header="Создание заявки на доставку" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <form [formGroup]="requestForm">
+      <div class="field">
+        <label class="mb-2" for="address">Адрес</label>
+        <input formControlName="address" placeholder="улица Назарбаева, 88" type="text" pInputText id="address" required />
+      </div>
+      <div class="field mt-3">
+        <label class="mb-2" for="apartment">Квартира</label>
+        <input formControlName="apartment" type="text" pInputText id="apartment"/>
+      </div>
+      <div class="field mt-3">
+        <label class="mb-2" for="entrance">Подъезд</label>
+        <input formControlName="entrance" type="number" pInputText id="entrance"/>
+      </div>
+      <div class="field mt-3">
+        <label class="mb-2" for="floor">Этаж</label>
+        <input formControlName="floor" type="number" pInputText id="floor" />
+      </div>
+      <div class="field mt-3">
+        <label class="mb-2" for="phoneNumber">Номер телефона получателя</label>
+        <input formControlName="phoneNumber" type="text" pInputText id="phoneNumber" />
+      </div>
+      <div class="field mt-3">
+        <label class="mb-2" for="description">Комментарий</label>
+        <input formControlName="description" type="text" pInputText id="description" />
+      </div>
+    </form>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Отмена" icon="pi pi-times" class="p-button-text" (click)="requestDialog = false"></button>
+    <button pButton pRipple type="submit" label="Создать заявку" icon="pi pi-check" (click)="onSubmit()" class="p-button-text"></button>
+  </ng-template>
+</p-dialog>

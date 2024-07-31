@@ -34,6 +34,7 @@ import {AddressComponent} from "./address/address.component";
 import {UserTrackComponent} from "./tracks/userTrack/user-track.component";
 import {DropdownModule} from "primeng/dropdown";
 import {AutoTrackingComponent} from "./auto-tracking/auto-tracking.component";
+import {RequestsComponent} from "./requests/requests.component";
 
 @NgModule({
   imports: [
@@ -79,7 +80,8 @@ import {AutoTrackingComponent} from "./auto-tracking/auto-tracking.component";
     UserFooterComponent,
     AddressComponent,
     UserTrackComponent,
-    AutoTrackingComponent
+    AutoTrackingComponent,
+    RequestsComponent
   ],
   providers: [ConfirmationService],
 })

@@ -1,5 +1,5 @@
 <nav class="navbar fixed-bottom">
-  <div class="container">
+  <div class="">
     <div class="nav">
 
 <!--      <div class="block">-->
@@ -19,6 +19,11 @@
           <i class="pi pi-map-marker"></i>
           <span class="text">Авто отслеживание</span>
         </div>
+        <div (click)="route('/user/requests')" [className]="currentUrl.includes('/user/requests') ? 'active-block' : 'block'">
+          <i class="pi pi-car"></i>
+          <span class="text">Доставка</span>
+          <span class="text"></span>
+        </div>
         <div (click)="route('/user/address')" [className]="currentUrl === '/user/address' ? 'active-block' : 'block'">
           <i class="pi pi-map"></i>
           <span class="text">Адрес склада</span>
@@ -30,6 +35,7 @@
         <div (click)="route('/user/calculator')" [className]="currentUrl === '/user/calculator' ? 'active-block' : 'block'">
           <i class="pi pi-calculator"></i>
           <span class="text">Калькулятор</span>
+          <span class="text"></span>
         </div>
       </div>
 

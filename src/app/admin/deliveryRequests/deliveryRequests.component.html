@@ -1,0 +1,181 @@
+<div class="card">
+  <div class="container">
+    <p-toast position="top-center"></p-toast>
+    <div class="mb-4">
+      <p-tabMenu [model]="menu"></p-tabMenu>
+    </div>
+    <div class="tableRequest">
+      <p-table #dt
+               [value]="data"
+               [lazy]="true"
+               [rows]="10"
+               [paginator]="true"
+               [(selection)]="selected"
+               (onLazyLoad)="loadData($event)"
+               [rowHover]="true"
+               [totalRecords]="totalRecords"
+               [loading]="loading"
+               [rowsPerPageOptions]="[10,25,50]"
+               dataKey="_id"
+               currentPageReportTemplate="Показано от {first} до {last} из {totalRecords} всех записей" [showCurrentPageReport]="true" >
+<!--        <ng-template pTemplate="caption">-->
+<!--          <div class="flex align-items-center justify-content-between">-->
+<!--              <span class="p-input-icon-left">-->
+<!--                    <i class="pi pi-search"></i>-->
+<!--                    <input pInputText type="text" (input)="filterGlobal(dt, $event, 'contains')" placeholder="Искать" />-->
+<!--                </span>-->
+<!--          </div>-->
+<!--        </ng-template>-->
+        <ng-template pTemplate="caption">
+          <div class="flex align-items-center justify-content-between">
+            <div class="mb-4" style="font-size: 20px;">
+              {{ getStatus(this.currentStatus) }}
+            </div>
+          </div>
+          <div *ngIf="currentStatus !== 'COMPLETED'">
+            <button [disabled]="!selected || !selected.length" (click)="generatePDF()" pButton pRipple label="Загрузить" icon="pi pi-file" class="mx-1 sp-button" ></button>
+            <button *ngIf="currentStatus === 'NEW'" (click)="updateRequests('PROCESS')" [disabled]="!selected || !selected.length" pButton pRipple label="Принять" icon="pi pi-check" class="mx-1 p-button-success"></button>
+            <button *ngIf="currentStatus === 'PROCESS'" (click)="updateRequests('COMPLETED')" [disabled]="!selected || !selected.length" pButton pRipple label="Завершить" icon="pi pi-send" class="mx-1 p-button-success" ></button>
+            <button *ngIf="currentStatus !== 'CANCELED'" (click)="updateRequests('CANCELED')" [disabled]="!selected || !selected.length" pButton pRipple label="Отклонить"  icon="pi pi-times" class="mx-1 p-button-danger"></button>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 4rem">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th pSortableColumn="fio">ФИО</th>
+            <th pSortableColumn="phoneNumber">Номер телефона</th>
+            <th pSortableColumn="phoneNumber">Указанный номер</th>
+            <th pSortableColumn="address">Адрес</th>
+            <th pSortableColumn="date">Дата создания</th>
+            <th pSortableColumn="date">Статус заявки</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-request>
+          <tr style="cursor: pointer">
+            <td>
+              <p-tableCheckbox [value]="request"></p-tableCheckbox>
+            </td>
+            <td>{{request.fio}}</td>
+            <td>{{request.userPhoneNumber}}</td>
+            <td>{{request.phoneNumber}}</td>
+            <td>{{request.address}}</td>
+            <td>{{request.createdDate}}</td>
+            <td>{{getStatusTitle(request.status)}}</td>
+            <td>
+              <div class="d-flex">
+                <div *ngIf="currentStatus !== 'COMPLETED'">
+                  <button (click)="rowClick(request)" pButton type="button" class="mx-1 p-button-sm p-button-rounded p-button-outlined" pTooltip="Детальная информация" icon="pi pi-search" ></button>
+                  <button *ngIf="currentStatus === 'NEW'" (click)="updateRequestStatus(request, 'PROCESS')" pButton type="button" class="mx-1 p-button-sm p-button-rounded p-button-outlined" pTooltip="Принять заявку" icon="pi pi-check" ></button>
+                  <button *ngIf="currentStatus === 'PROCESS'" (click)="updateRequestStatus(request, 'COMPLETED')" pButton type="button" class="mx-1 p-button-sm p-button-rounded p-button-outlined" pTooltip="Завершить заявку" icon="pi pi-send" ></button>
+                  <button *ngIf="currentStatus !== 'CANCELED'" (click)="updateRequestStatus(request, 'CANCELED')" class="mx-1 p-button-rounded p-button-danger p-button-outlined" pTooltip="Отклонить заявку" pButton icon="pi pi-times" ></button>
+                </div>
+<!--                <button pButton pRipple icon="pi pi-lock" class="p-button-rounded p-button-success mx-1" (click)="openChangePassword(user)"></button>-->
+<!--                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteProduct(user)"></button>-->
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" let-columns>
+          <tr>
+            <td [attr.colspan]="8">
+              <div style="text-align: center">
+                Данных не найдено
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+  </div>
+</div>
+
+<p-dialog [(visible)]="requestDetailDialog" [dismissableMask]="true" [draggable]="false" [style]="{width: '600px'}" header="Информация о заявке" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <table class="table">
+      <tr>
+        <td>
+          Фио:
+        </td>
+        <td>
+          {{ currentRequest.fio }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Номер телефона:
+        </td>
+        <td>
+          {{ currentRequest.userPhoneNumber }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Адрес:
+        </td>
+        <td>
+          {{ currentRequest.address }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Квартира:
+        </td>
+        <td>
+          {{ currentRequest.apartment }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Этаж:
+        </td>
+        <td>
+          {{ currentRequest.floor }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Подьезд:
+        </td>
+        <td>
+          {{ currentRequest.entrance }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Указанный номер телефона:
+        </td>
+        <td>
+          {{ currentRequest.phoneNumber }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Статус заявки:
+        </td>
+        <td>
+          {{ getStatusTitle(currentRequest.status) }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Описание:
+        </td>
+        <td>
+          {{ currentRequest.description }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Дата создания заявки:
+        </td>
+        <td>
+          {{ currentRequest.createdDate }}
+        </td>
+      </tr>
+    </table>
+  </ng-template>
+</p-dialog>

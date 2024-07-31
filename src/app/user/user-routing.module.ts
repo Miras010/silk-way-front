@@ -10,6 +10,7 @@ import {UserGuard} from "../guards/user.guard";
 import {CalculatorComponent} from "./calculator/calculator.component";
 import {AddressComponent} from "./address/address.component";
 import {AutoTrackingComponent} from "./auto-tracking/auto-tracking.component";
+import {RequestsComponent} from "./requests/requests.component";
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
     {
       path: 'auto-tracking',
       component: AutoTrackingComponent
+    },
+    {
+      path: 'requests',
+      component: RequestsComponent
     },
     {
       path: 'profile',
