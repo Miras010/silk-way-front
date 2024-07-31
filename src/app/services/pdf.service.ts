@@ -32,6 +32,7 @@ export class PdfGeneratorService {
         font: 'customFont'
       },
       columnStyles: {
+        0: { cellWidth: 20 },
         2: { cellWidth: 30 },
         3: { cellWidth: 50 }, // Set the width of the "Адрес" column (3rd column, index 2) to 50 units
       }
