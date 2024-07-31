@@ -27,4 +27,10 @@ export class RequestService {
       headers: this.headers
     })
   }
+
+  public updateRequest (data: any): Observable<any> {
+    return this.http.put(this.fullUrl + '/update', data, {
+      headers: this.headers
+    })
+  }
 }

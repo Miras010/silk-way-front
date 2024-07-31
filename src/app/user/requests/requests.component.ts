@@ -5,7 +5,7 @@ import {RequestService} from "../../services/requests.service";
 import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {MessageService} from "primeng/api";
+import {ConfirmationService, MessageService} from "primeng/api";
 import {AuthService} from "../../services/auth.service";
 
 @Component({
@@ -21,6 +21,7 @@ export class RequestsComponent implements OnInit {
   requestDialog: boolean = false
   requestForm: FormGroup = new FormGroup({
     address: new FormControl('', Validators.required),
+    clientCode: new FormControl('', Validators.required),
     apartment: new FormControl(''),
     floor: new FormControl(''),
     entrance: new FormControl(''),
@@ -31,10 +32,34 @@ export class RequestsComponent implements OnInit {
   constructor(private requestService: RequestService,
               private activateRoute: ActivatedRoute,
               private authService: AuthService,
+              private confirmationService: ConfirmationService,
               private messageService: MessageService) { }
 
   ngOnInit() {
     this.getReceipts()
+  }
+
+  cancelRequest (item: any) {
+    this.confirmationService.confirm({
+      message: 'Вы уверены что хотите отменить заявку?',
+      header: 'Подтверждение',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.isLoading = true
+        const data = {
+          _id: item._id,
+          status: 'CANCELED'
+        }
+        this.requestService.updateRequest(data).toPromise().then(() => {
+          this.messageService.add({severity:'success', summary: 'Успешно', detail: 'Статус заявки изменен', life: 3000});
+        }).catch(err => {
+          this.messageService.add({severity:'error', summary: 'Ошибка', detail: 'Не удалось изменить статус заявки' + err.error.message, life: 3000});
+        }).finally(() => {
+          this.getReceipts()
+          this.isLoading = false
+        })
+      }
+    });
   }
 
   createRequest () {

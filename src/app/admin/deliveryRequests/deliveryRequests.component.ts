@@ -72,6 +72,7 @@ export class DeliveryRequestsComponent implements OnInit {
         this.data = resp.resp.map(item => {
           item.createdDate = this.getFormattedDate(item.createdDate)
           item.fio = item.userId.name + ' ' + item.userId.surname
+          item.usersCode = item.userId.username
           item.userPhoneNumber = item.userId.phoneNumber
           return item
         })
