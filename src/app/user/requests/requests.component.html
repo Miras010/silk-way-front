@@ -75,18 +75,21 @@
         <label class="mb-2" for="address">Адрес</label>
         <input formControlName="address" placeholder="улица Назарбаева, 88" type="text" pInputText id="address" required />
       </div>
-      <div class="field mt-3">
-        <label class="mb-2" for="apartment">Квартира</label>
-        <input formControlName="apartment" type="text" pInputText id="apartment"/>
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div class="field mt-3">
+          <label class="mb-2" for="apartment">Квартира</label>
+          <input formControlName="apartment" type="text" pInputText id="apartment"/>
+        </div>
+        <div class="field mt-3 mx-2">
+          <label class="mb-2" for="entrance">Подъезд</label>
+          <input formControlName="entrance" type="number" pInputText id="entrance"/>
+        </div>
+        <div class="field mt-3">
+          <label class="mb-2" for="floor">Этаж</label>
+          <input formControlName="floor" type="number" pInputText id="floor" />
+        </div>
       </div>
-      <div class="field mt-3">
-        <label class="mb-2" for="entrance">Подъезд</label>
-        <input formControlName="entrance" type="number" pInputText id="entrance"/>
-      </div>
-      <div class="field mt-3">
-        <label class="mb-2" for="floor">Этаж</label>
-        <input formControlName="floor" type="number" pInputText id="floor" />
-      </div>
+
       <div class="field mt-3">
         <label class="mb-2" for="phoneNumber">Номер телефона получателя</label>
         <input formControlName="phoneNumber" type="text" pInputText id="phoneNumber" />
