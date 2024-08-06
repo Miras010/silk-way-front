@@ -83,7 +83,12 @@ export class DeliveryRequestsComponent implements OnInit {
   }
 
   generatePDF() {
-    this.pdfGeneratorService.generatePDF(this.selected);
+    const data = this.selected.map((item) => {
+      // @ts-ignore
+      item.fullAdress = item.address + ' ' + item.apartment + ', под.' + item.entrance + ', этаж ' +  item.floor
+      return item
+    })
+    this.pdfGeneratorService.generatePDF(data);
   }
 
   updateRequestStatus (request: any, status: string) {

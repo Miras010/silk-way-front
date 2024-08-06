@@ -17,11 +17,11 @@ export class PdfGeneratorService {
     doc.addFont('customFont.ttf', 'customFont', 'normal');
     doc.setFont('customFont');
 
-    const col = ["Код", "ФИО", "Номер", "Адрес", "Квартира", "Подьезд", "Этаж", "Комментарий"];
+    const col = ["Код", "ФИО", "Номер", "Адрес", "Комментарий"];
     const rows: any[] = [];
 
     data.forEach(item => {
-      const temp = [item.clientCode, item.fio, item.phoneNumber, item.address, item.apartment, item.entrance, item.floor, item.description];
+      const temp = [item.clientCode, item.fio, item.phoneNumber, item.fullAdress, item.description];
       rows.push(temp);
     });
 
@@ -32,8 +32,9 @@ export class PdfGeneratorService {
         font: 'customFont'
       },
       columnStyles: {
-        0: { cellWidth: 20 },
-        2: { cellWidth: 30 },
+        0: { cellWidth: 15 },
+        1: { cellWidth: 30 },
+        2: { cellWidth: 25 },
         3: { cellWidth: 50 }, // Set the width of the "Адрес" column (3rd column, index 2) to 50 units
       }
     });

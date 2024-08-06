@@ -14,15 +14,15 @@ export class CalculatorComponent implements OnInit {
 
   isLoading: boolean = false
   form1: FormGroup = new FormGroup({
-    price: new FormControl(4.3),
-    priceText: new FormControl('4.3$'),
+    price: new FormControl(4.2),
+    priceText: new FormControl('4.2$'),
     course: new FormControl(477),
     weight: new FormControl(null),
     sum: new FormControl(0)
   })
   form2: FormGroup = new FormGroup({
-    price: new FormControl(4.1),
-    priceText: new FormControl('4.1$'),
+    price: new FormControl(4),
+    priceText: new FormControl('4$'),
     course: new FormControl(477),
     weight: new FormControl(null),
     sum: new FormControl(0)
