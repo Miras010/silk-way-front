@@ -36,7 +36,7 @@
         <span class="welcomeText">Заявки на доставку</span>
       </div>
       <div class="mt-3">
-        <p-button (click)="createRequest()"
+        <p-button (click)="requestDialog = true"
                   label="Подать заявку на доставку по городу"
                   styleClass="p-button-raised p-button-text"
                   icon="pi pi-plus"
@@ -72,6 +72,10 @@
       <div class="field">
         <label class="mb-2" for="clientCode">Код клиента</label>
         <input formControlName="clientCode" placeholder="0001" type="text" pInputText id="clientCode" required />
+      </div>
+      <div class="field">
+        <label class="mb-2" for="clientName">Имя клиента</label>
+        <input formControlName="clientName" placeholder="Айнур" type="text" pInputText id="clientName" required />
       </div>
       <div class="field mt-3">
         <label class="mb-2" for="address">Адрес</label>

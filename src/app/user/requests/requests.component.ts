@@ -26,7 +26,8 @@ export class RequestsComponent implements OnInit {
     floor: new FormControl(''),
     entrance: new FormControl(''),
     phoneNumber: new FormControl(''),
-    description: new FormControl('')
+    description: new FormControl(''),
+    clientName: new FormControl('', Validators.required)
   })
 
   constructor(private requestService: RequestService,
@@ -60,14 +61,6 @@ export class RequestsComponent implements OnInit {
         })
       }
     });
-  }
-
-  createRequest () {
-    if (this.isAuthorized()) {
-      this.requestDialog = true
-    } else {
-      this.messageService.add({severity:'info', summary: 'Ошибка авторизации', detail: 'Необходимо авторизоваться', life: 3000});
-    }
   }
 
   onSubmit () {

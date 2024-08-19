@@ -71,9 +71,9 @@ export class DeliveryRequestsComponent implements OnInit {
         // @ts-ignore
         this.data = resp.resp.map(item => {
           item.createdDate = this.getFormattedDate(item.createdDate)
-          item.fio = item.userId.name + ' ' + item.userId.surname
-          item.usersCode = item.userId.username
-          item.userPhoneNumber = item.userId.phoneNumber
+          item.fio = item.userId ? item.userId.name + ' ' + item.userId.surname : item.clientName
+          item.usersCode = item.userId ? item.userId.username : ''
+          item.userPhoneNumber = item.userId ? item.userId.phoneNumber : ''
           return item
         })
         this.totalRecords = resp.totalCount
@@ -85,7 +85,7 @@ export class DeliveryRequestsComponent implements OnInit {
   generatePDF() {
     const data = this.selected.map((item) => {
       // @ts-ignore
-      item.fullAdress = item.address + ' ' + item.apartment + ', под.' + item.entrance + ', этаж ' +  item.floor
+      item.fullAdress = item.address + ', кв-' + item.apartment + ', под-' + item.entrance + ', этаж-' +  item.floor
       return item
     })
     this.pdfGeneratorService.generatePDF(data);

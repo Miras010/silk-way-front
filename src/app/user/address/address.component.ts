@@ -22,7 +22,7 @@ export class AddressComponent implements OnInit {
     this.clipboard.copy('努尔波+код\n' +
       '13078833342\n' +
       '广东省 佛山市 南海区\n' +
-      '里水镇新联工业区工业大道东一路3号航达В01库区-努尔波+ код')
+      '里水镇新联工业区工业大道东一路3号航达В01库区努尔波+ код')
     this.messageService.add({
       severity: "success",
       summary: "Адрес скопирован!",
